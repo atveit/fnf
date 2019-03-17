@@ -1,0 +1,35 @@
+{
+  "name": "frontend-nanodegree-feedreader",
+  "version": "1.0.0",
+  "description": "In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udacity/frontend-nanodegree-feedreader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/udacity/frontend-nanodegree-feedreader/issues"
+  },
+  "homepage": "https://github.com/udacity/frontend-nanodegree-feedreader#readme",
+  "dependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp-eslint": "^5.0.0",
+    "gulp-jasmine-browser": "^4.1.0",
+    "gulp-sass": "^4.0.2",
+    "jasmine": "^3.3.1",
+    "jasmine-core": "^3.3.0",
+    "puppeteer": "^1.13.0",
+    "yo": "^2.0.5"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.2",
+    "eslint-config-google": "^0.12.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0"
+  }
+}
