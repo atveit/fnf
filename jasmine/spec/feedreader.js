@@ -127,7 +127,7 @@ $(function () {
             });
         });
 
-        it('feed_with_two_entries is different from the one with 1', function() {
+        it('feed with two entries is different from the feed with one entry', function() {
             expect(feed_with_two_entries).not.toBe(feed_with_one_entry);
         })
 
