@@ -29,7 +29,7 @@ $(function () {
         // note: the 2 tests below could be combined into one with &&
         // https://stackoverflow.com/questions/17469928/how-to-use-multiple-expect-in-jasmine/17813711
 
-        /* TODO: Write a test that loops through each feed
+        /* Test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
@@ -39,7 +39,7 @@ $(function () {
             });
         });
 
-        /* TODO: Write a test that loops through each feed
+        /* Test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
@@ -54,13 +54,10 @@ $(function () {
     /* TODO: Write a new test suite named "The menu" */
     describe('The Menu', function () {
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
+        /* Test that ensures the menu element is
+         * hidden by default.
+         * Page HTML has <body class="menu-hidden">
          */
-
-        // Page HTML has <body class="menu-hidden">, fetch body 
         it('menu - hidden by default', function () {
             expect(document.body.classList.contains('menu-hidden')).toBe(true);
         });
@@ -71,8 +68,8 @@ $(function () {
          * should have two expectations: does the menu display when
          * clicked and does it hide when clicked again.
          */
-        // click on first menu-icon-link
         it('menu change visibility when icon is clicked', function () {
+            // could have used jquery instead of querySelector
             document.querySelector('.menu-icon-link').click();
             expect(document.body.classList.contains('menu-hidden')).toBe(false);
             document.querySelector('.menu-icon-link').click();
@@ -83,55 +80,53 @@ $(function () {
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function () {
 
-        /* TODO: Write a test that ensures when the loadFeed
+        /* Test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
+        /*
+         * Load a feed with one element
+         */
         beforeEach(function (done) {
             const feed_id = 0;
             loadFeed(feed_id, done);
         });
 
+        /*
+         * Check that at there is at least one element in the feed
+         */
         it('at least 1 .entry element within .feed after loadFeed()', function() {
            expect(document.querySelectorAll('.feed .entry').length).toBeGreaterThan(0); 
         });
-
-
     });
 
-
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    // Test Suite for checking behavior with multiple feed entries
     describe('News Feed Selection', function () {
-
-
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
+        /*
+         * Creates two feeds, one with a single entry and one with two entries
+         * Since loadFeed is asynchronous it has to be nested and 
+         * callback done() called at the end.
          */
-
-        // create a feed with 1 entry and another with 2 entries
         var feed_with_one_entry;
         var feed_with_two_entries;
-        beforeEach(function (done_callback) {
+        beforeEach(function (done) {
             const first_feed_id = 0;
-            loadFeed(first_feed_id, function(done) {
+            loadFeed(first_feed_id, function() {
                 feed_with_one_entries = document.querySelector('.feed').innerHTML;
                 const second_feed_id = 1;
                 loadFeed(second_feed_id, function() {
                     feed_with_two_entries = document.querySelector('.feed').innerHTML;
-                    done_callback(); // run callback
+                    done(); // run callback
                 });
             });
         });
 
+        /*
+         * Checks that the two feeds (of assumably different length) actually are different
+         */
         it('feed with two entries is different from the feed with one entry', function() {
             expect(feed_with_two_entries).not.toBe(feed_with_one_entry);
         })
-
-
-
     });
 }());
